@@ -12,6 +12,18 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('friend-finder')
 
-contacts = SHEET.worksheet('contacts')
-data = contacts.get_all_values()
-print(data)
+
+def add_contact():
+    print("\n--- Add New Contact ---")
+    name = input("Name: ").strip()
+    phone = input("Phone: ").strip()
+    email = input("Email: ").strip()
+    notes = input("Notes (optional): ").strip()
+
+    # Append to the first worksheet in the friend-finder Google Sheet
+    worksheet = SHEET.sheet1
+    worksheet.append_row([name, phone, email, notes])
+    print("✅ Contact added successfully!")
+
+
+
