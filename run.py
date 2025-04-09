@@ -18,10 +18,10 @@ SHEET = GSPREAD_CLIENT.open('friend-finder')
 def add_contact():
     print("\n--- Add New Contact ---")
     try:
-        name = input("Name: ").strip()
-        phone = input("Phone: ").strip()
-        email = input("Email: ").strip()
-        notes = input("Notes (optional): ").strip()
+        name = input("Name: \n").strip()
+        phone = input("Phone: \n").strip()
+        email = input("Email: \n").strip()
+        notes = input("Notes (optional): \n").strip()
 
         if not name or not phone or not email:
             print(Fore.YELLOW + "⚠️ Name, phone, and email are required.")
@@ -66,7 +66,7 @@ def view_contacts():
 def search_contact():
     print("\n--- Search Contact by Name ---")
     try:
-        name_to_search = input("Enter name to search: ").strip().lower()
+        name_to_search = input("Enter name to search:\n").strip().lower()
         worksheet = SHEET.sheet1
         contacts = worksheet.get_all_values()
 
@@ -97,7 +97,7 @@ def search_contact():
 def edit_contact():
     print("\n--- Edit Contact ---")
     try:
-        name_to_edit = input("Enter name of the contact to edit: ").strip().lower()
+        name_to_edit = input("Enter name of the contact to edit: \n").strip().lower()
         worksheet = SHEET.sheet1
         contacts = worksheet.get_all_values()
 
@@ -123,7 +123,7 @@ def edit_contact():
 
         while True:
             try:
-                selection = int(input("\nEnter the number of the contact to edit: "))
+                selection = int(input("\nEnter the number of the contact to edit: \n"))
                 if 1 <= selection <= len(matches):
                     break
                 else:
@@ -135,10 +135,10 @@ def edit_contact():
         row_number, contact = matches[selection - 1]
         print()
 
-        new_name = input(f"Name [{contact[0]}]: ").strip() or contact[0]
-        new_phone = input(f"Phone [{contact[1]}]: ").strip() or contact[1]
-        new_email = input(f"Email [{contact[2]}]: ").strip() or contact[2]
-        new_notes = input(f"Notes [{contact[3]}]: ").strip() or contact[3]
+        new_name = input(f"Name [{contact[0]}]: \n").strip() or contact[0]
+        new_phone = input(f"Phone [{contact[1]}]: \n").strip() or contact[1]
+        new_email = input(f"Email [{contact[2]}]: \n").strip() or contact[2]
+        new_notes = input(f"Notes [{contact[3]}]: \n").strip() or contact[3]
 
         worksheet.update(f"A{row_number}:D{row_number}", [[new_name, new_phone, new_email, new_notes]])
         print(Style.BRIGHT + Fore.GREEN + "Contact updated successfully.")
@@ -152,7 +152,7 @@ def edit_contact():
 def delete_contact():
     print("\n--- Delete Contact ---")
     try:
-        name_to_delete = input("Enter name of the contact to delete: ").strip().lower()
+        name_to_delete = input("Enter name of the contact to delete: \n").strip().lower()
         worksheet = SHEET.sheet1
         contacts = worksheet.get_all_values()
 
@@ -177,7 +177,7 @@ def delete_contact():
 
         while True:
             try:
-                selection = int(input("\nEnter the number of the contact to delete: "))
+                selection = int(input("\nEnter the number of the contact to delete: \n"))
                 if 1 <= selection <= len(matches):
                     break
                 else:
@@ -187,7 +187,7 @@ def delete_contact():
 
         # Confirm deletion
         row_number, contact = matches[selection - 1]
-        confirm = input(f"\nAre you sure you want to delete {contact[0]}? (y/n): ").strip().lower()
+        confirm = input(f"\nAre you sure you want to delete {contact[0]}? (y/n): \n").strip().lower()
         if confirm == "y":
             worksheet.delete_rows(row_number)
             print("🗑️ Contact deleted successfully.")
@@ -217,7 +217,7 @@ def main():
     print("You can also search for contacts by name.")
     while True:
         print_menu()
-        choice = input("Choose an option (1–6): ").strip()
+        choice = input("Choose an option (1–6): \n").strip()
 
         if choice == "1":
             add_contact()
