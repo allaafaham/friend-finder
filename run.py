@@ -137,14 +137,66 @@ def edit_contact():
         print("❌ Failed to edit contact.")
         print(f"Error: {e}")
 
+#function to delete a contact.
+def delete_contact():
+    print("\n--- Delete Contact ---")
+    try:
+        name_to_delete = input("Enter name of the contact to delete: ").strip().lower()
+        worksheet = SHEET.sheet1
+        contacts = worksheet.get_all_values()
+
+        if len(contacts) <= 1:
+            print("📭 No contacts to delete.")
+            return
+
+        # Find all matching contacts
+        matches = []
+        for idx, contact in enumerate(contacts, start=1):
+            name = contact[0].strip().lower()
+            if name == name_to_delete:
+                matches.append((idx, contact))
+
+        if not matches:
+            print("❌ No contact found with that name.")
+            return
+
+        print(f"\nFound {len(matches)} matching contact(s):")
+        for i, (row, contact) in enumerate(matches, start=1):
+            print(f"{i}. {contact[0]} | {contact[1]} | {contact[2]} | {contact[3]}")
+
+        while True:
+            try:
+                selection = int(input("\nEnter the number of the contact to delete: "))
+                if 1 <= selection <= len(matches):
+                    break
+                else:
+                    print(f"Please enter a number between 1 and {len(matches)}.")
+            except ValueError:
+                print("Please enter a valid number.")
+
+        # Confirm deletion
+        row_number, contact = matches[selection - 1]
+        confirm = input(f"\nAre you sure you want to delete {contact[0]}? (y/n): ").strip().lower()
+        if confirm == "y":
+            worksheet.delete_rows(row_number)
+            print("🗑️ Contact deleted successfully.")
+        else:
+            print("❌ Deletion cancelled.")
+
+    except Exception as e:
+        print("❌ Failed to delete contact.")
+        print(f"Error: {e}")
+
+
 def print_menu():
     print("\n==== FriendFinder Menu ====")
     print("1. Add Contact")
     print("2. View All Contacts")
     print("3. Search Contact by Name")
     print("4. Edit Contact")
-    print("5. Exit")
-   
+    print("5. Delete Contact")
+    print("6. Exit")
+  
 
 def main():
     print("welcome to FriendFinder")
@@ -154,7 +206,7 @@ def main():
     print("You can also search for contacts by name.")
     while True:
         print_menu()
-        choice = input("Choose an option (1–5): ").strip()
+        choice = input("Choose an option (1–6): ").strip()
 
         if choice == "1":
             add_contact()
@@ -165,10 +217,12 @@ def main():
         elif choice == "4":
             edit_contact()
         elif choice == "5":
+            delete_contact()
+        elif choice == "6":
             print("👋 Goodbye!")
             break
         else:
-            print("❌ Invalid choice. Please enter a number from 1 to 5.")
+            print("❌ Invalid choice. Please enter a number from 1 to 6.")
 
 
 if __name__ == "__main__":
