@@ -36,6 +36,7 @@ def add_contact():
 #function to view all contacts.
 def view_contacts():
     print("\n--- All Contacts ---")
+    print()
     try:
         worksheet = SHEET.sheet1
         contacts = worksheet.get_all_values()
@@ -82,7 +83,39 @@ def search_contact():
         print("❌ Failed to search contacts.")
         print(f"Error: {e}")
 
+def print_menu():
+    print("\n==== FriendFinder Menu ====")
+    print("1. Add Contact")
+    print("2. View All Contacts")
+    print("3. Search Contact by Name")
+    print("4. Exit")
+
+def main():
+    print("welcome to FriendFinder")
+    print("This is a simple contact management system.")
+    print("You can add, view, and search for contacts.")
+    print("You can also update and delete contacts.")
+    print("You can also search for contacts by name.")
+    while True:
+        print_menu()
+        choice = input("Choose an option (1–4): ").strip()
+
+        if choice == "1":
+            add_contact()
+        elif choice == "2":
+            view_contacts()
+            print("\n--- End of Contacts ---")
+            print()
+            
+        elif choice == "3":
+            search_contact()
+        elif choice == "4":
+            print("👋 Goodbye!")
+            break
+        else:
+            print("❌ Invalid choice. Please enter a number from 1 to 4.")
+
 
 if __name__ == "__main__":
-    search_contact()
+    main()
 
