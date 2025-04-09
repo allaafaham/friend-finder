@@ -95,24 +95,43 @@ def edit_contact():
             print("📭 No contacts to edit.")
             return
 
-        # Search for the contact row (skip header)
-        for idx, contact in enumerate(contacts, start=1):  # start=2 to match Google Sheet row numbers
+        # Find all contacts with matching name
+        matches = []
+        for idx, contact in enumerate(contacts, start=1):
             name = contact[0].strip().lower()
             if name == name_to_edit:
-                print(f"\nFound: {contact[0]} | {contact[1]} | {contact[2]} | {contact[3]}")
-                print("Leave blank to keep existing value.\n")
+                matches.append((idx, contact))  # store row number and contact
 
-                new_name = input(f"Name [{contact[0]}]: ").strip() or contact[0]
-                new_phone = input(f"Phone [{contact[1]}]: ").strip() or contact[1]
-                new_email = input(f"Email [{contact[2]}]: ").strip() or contact[2]
-                new_notes = input(f"Notes [{contact[3]}]: ").strip() or contact[3]
+        if not matches:
+            print("❌ No contact found with that name.")
+            return
 
-                # Update the row in the sheet
-                worksheet.update(f"A{idx}:D{idx}", [[new_name, new_phone, new_email, new_notes]])
-                print("✅ Contact updated successfully.")
-                return
+        # If more than one match, ask user to choose
+        print(f"\nFound {len(matches)} matching contact(s):")
+        for i, (row, contact) in enumerate(matches, start=1):
+            print(f"{i}. {contact[0]} | {contact[1]} | {contact[2]} | {contact[3]}")
 
-        print("❌ Contact not found.")
+        while True:
+            try:
+                selection = int(input("\nEnter the number of the contact to edit: "))
+                if 1 <= selection <= len(matches):
+                    break
+                else:
+                    print(f"Please enter a number between 1 and {len(matches)}.")
+            except ValueError:
+                print("Please enter a valid number.")
+
+        # Edit the selected contact
+        row_number, contact = matches[selection - 1]
+        print()
+
+        new_name = input(f"Name [{contact[0]}]: ").strip() or contact[0]
+        new_phone = input(f"Phone [{contact[1]}]: ").strip() or contact[1]
+        new_email = input(f"Email [{contact[2]}]: ").strip() or contact[2]
+        new_notes = input(f"Notes [{contact[3]}]: ").strip() or contact[3]
+
+        worksheet.update(f"A{row_number}:D{row_number}", [[new_name, new_phone, new_email, new_notes]])
+        print("✅ Contact updated successfully.")
 
     except Exception as e:
         print("❌ Failed to edit contact.")
