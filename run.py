@@ -83,12 +83,49 @@ def search_contact():
         print("❌ Failed to search contacts.")
         print(f"Error: {e}")
 
+
+def edit_contact():
+    print("\n--- Edit Contact ---")
+    try:
+        name_to_edit = input("Enter name of the contact to edit: ").strip().lower()
+        worksheet = SHEET.sheet1
+        contacts = worksheet.get_all_values()
+
+        if len(contacts) <= 1:
+            print("📭 No contacts to edit.")
+            return
+
+        # Search for the contact row (skip header)
+        for idx, contact in enumerate(contacts, start=1):  # start=2 to match Google Sheet row numbers
+            name = contact[0].strip().lower()
+            if name == name_to_edit:
+                print(f"\nFound: {contact[0]} | {contact[1]} | {contact[2]} | {contact[3]}")
+                print("Leave blank to keep existing value.\n")
+
+                new_name = input(f"Name [{contact[0]}]: ").strip() or contact[0]
+                new_phone = input(f"Phone [{contact[1]}]: ").strip() or contact[1]
+                new_email = input(f"Email [{contact[2]}]: ").strip() or contact[2]
+                new_notes = input(f"Notes [{contact[3]}]: ").strip() or contact[3]
+
+                # Update the row in the sheet
+                worksheet.update(f"A{idx}:D{idx}", [[new_name, new_phone, new_email, new_notes]])
+                print("✅ Contact updated successfully.")
+                return
+
+        print("❌ Contact not found.")
+
+    except Exception as e:
+        print("❌ Failed to edit contact.")
+        print(f"Error: {e}")
+
 def print_menu():
     print("\n==== FriendFinder Menu ====")
     print("1. Add Contact")
     print("2. View All Contacts")
     print("3. Search Contact by Name")
-    print("4. Exit")
+    print("4. Edit Contact")
+    print("5. Exit")
+   
 
 def main():
     print("welcome to FriendFinder")
@@ -98,22 +135,21 @@ def main():
     print("You can also search for contacts by name.")
     while True:
         print_menu()
-        choice = input("Choose an option (1–4): ").strip()
+        choice = input("Choose an option (1–5): ").strip()
 
         if choice == "1":
             add_contact()
         elif choice == "2":
             view_contacts()
-            print("\n--- End of Contacts ---")
-            print()
-            
         elif choice == "3":
             search_contact()
         elif choice == "4":
+            edit_contact()
+        elif choice == "5":
             print("👋 Goodbye!")
             break
         else:
-            print("❌ Invalid choice. Please enter a number from 1 to 4.")
+            print("❌ Invalid choice. Please enter a number from 1 to 5.")
 
 
 if __name__ == "__main__":
