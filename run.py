@@ -35,8 +35,7 @@ def add_contact():
 
 #function to view all contacts.
 def view_contacts():
-    print("\n--- All Contacts ---")
-    print()
+    print("\n--- All Contacts (Sorted by Name) ---")
     try:
         worksheet = SHEET.sheet1
         contacts = worksheet.get_all_values()
@@ -45,8 +44,17 @@ def view_contacts():
             print("📭 No contacts found.")
             return
 
-        for i, contact in enumerate(contacts, start=1):
-            print(f"{i}. {contact[0]} | {contact[1]} | {contact[2]} | {contact[3]}")
+        header = contacts[0]
+        data = contacts[1:]
+
+        # Sort by name (first column)
+        sorted_data = sorted(data, key=lambda x: x[0].lower())
+
+        print(f"{'No.':<4} {'Name':<20} | {'Phone':<15} | {'Email':<25} | Notes")
+        print("-" * 80)
+
+        for i, contact in enumerate(sorted_data, start=1):
+            print(f"{i:<4} {contact[0]:<20} | {contact[1]:<15} | {contact[2]:<25} | {contact[3]}")
 
     except Exception as e:
         print("❌ Failed to retrieve contacts.")
