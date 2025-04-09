@@ -1,5 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from colorama import Fore, Style, init
+init(autoreset=True)
 
 # constant variable
 SCOPE = [
@@ -22,12 +24,12 @@ def add_contact():
         notes = input("Notes (optional): ").strip()
 
         if not name or not phone or not email:
-            print("⚠️ Name, phone, and email are required.")
+            print(Fore.YELLOW + "⚠️ Name, phone, and email are required.")
             return
 
         worksheet = SHEET.sheet1
         worksheet.append_row([name, phone, email, notes])
-        print("✅ Contact added successfully!")
+        print(Fore.GREEN + "✅ Contact added successfully!")
 
     except Exception as e:
         print("❌ An error occurred while adding the contact.")
@@ -35,7 +37,7 @@ def add_contact():
 
 #function to view all contacts.
 def view_contacts():
-    print("\n--- All Contacts (Sorted by Name) ---")
+    print(Fore.CYAN + "\n--- All Contacts (Sorted by Name) ---")
     try:
         worksheet = SHEET.sheet1
         contacts = worksheet.get_all_values()
@@ -57,7 +59,7 @@ def view_contacts():
             print(f"{i:<4} {contact[0]:<20} | {contact[1]:<15} | {contact[2]:<25} | {contact[3]}")
 
     except Exception as e:
-        print("❌ Failed to retrieve contacts.")
+        print(Fore.RED + "❌ Failed to retrieve contacts.")
         print(f"Error: {e}")
 
 # fucntion to search contact by name.
@@ -139,7 +141,8 @@ def edit_contact():
         new_notes = input(f"Notes [{contact[3]}]: ").strip() or contact[3]
 
         worksheet.update(f"A{row_number}:D{row_number}", [[new_name, new_phone, new_email, new_notes]])
-        print("✅ Contact updated successfully.")
+        print(Style.BRIGHT + Fore.GREEN + "Contact updated successfully.")
+
 
     except Exception as e:
         print("❌ Failed to edit contact.")
@@ -197,8 +200,8 @@ def delete_contact():
 
 
 def print_menu():
-    print("\n==== FriendFinder Menu ====")
-    print("1. Add Contact")
+    print(Fore.MAGENTA + "\n==== FriendFinder Menu ====")
+    print(Fore.CYAN + "1. Add Contact")
     print("2. View All Contacts")
     print("3. Search Contact by Name")
     print("4. Edit Contact")
