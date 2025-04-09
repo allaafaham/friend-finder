@@ -34,4 +34,24 @@ def add_contact():
         print(f"Error details: {e}")
 
     
+def view_contacts():
+    print("\n--- All Contacts ---")
+    try:
+        worksheet = SHEET.sheet1
+        contacts = worksheet.get_all_values()
+
+        if len(contacts) <= 1:
+            print("📭 No contacts found.")
+            return
+
+        # Optional: skip the header row if it exists
+        for i, contact in enumerate(contacts, start=1):
+            print(f"{i}. {contact[0]} | {contact[1]} | {contact[2]} | {contact[3]}")
+
+    except Exception as e:
+        print("❌ Failed to retrieve contacts.")
+        print(f"Error: {e}")
+
+if __name__ == "__main__":
+    view_contacts()
 
