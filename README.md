@@ -4,28 +4,8 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/allaafaham/friend-finder)](https://www.github.com/allaafaham/friend-finder/commits/main)
 [![GitHub repo size](https://img.shields.io/github/repo-size/allaafaham/friend-finder)](https://www.github.com/allaafaham/friend-finder)
 
-⚠️ INSTRUCTIONS ⚠️
+FriendFinder is a simple command-line contact book built with Python. It allows users to add, view, search, update, and delete contacts through an intuitive text-based interface. All data is stored in a connected Google Sheet using the gspread library, ensuring that contacts are saved and accessible across sessions. FriendFinder is designed to be lightweight, functional, and a great introduction to using Python with external APIs for real-world applications.
 
-In this section, include a few paragraphs providing an overview of your project. Essentially, this part is your "sales pitch". Describe what the project hopes to accomplish, who it is intended to target, and how it will be useful to the target audience.
-
-⚠️ --- END --- ⚠️
-
-🛑 NOTES 🛑
-
-Do not add a **Table of Contents** to your Markdown files. GitHub has these built-in automatically using the headers/hashtags.
-
-Don't add screenshots for the README/TESTING into your `assets` or `static` folders. Create a new folder at the root-level called `documentation`. Consider creating sub-directories within `documentation` to handle things like `wireframes`, `features`, `validation`, `responsiveness`, etc.
-
-**Site Mockups**
-*([amiresponsive](https://ui.dev/amiresponsive?url=https://friend-finder-py-77390a27fd18.herokuapp.com), [techsini](https://techsini.com/multi-mockup), etc.)*
-Having issues generating site mockups? This is likely due to security policies with your deployed site.
-If you open up your DevTools, there may be an error referencing `X-Frame-Options`.
-
-For Chrome users, head over to http://bit.ly/3iRPn4u and install the extension within your browser. Once installed, navigate back to the mockup site of your choice. You should find your site rendering in the various devices now.
-
-Alternatively, open your project in Gitpod and run the server. Once the site is running, click the `Ports` tab from your Gitpod Terminal. Click the padlock on the appropriate port for your project (`Flask: 5000`, `Django: 8000`). This will make your local page public temporarily. Now, copy the URL of your live-preview page into the responsive tool above. You should find your site rendering in the various devices.
-
-🛑 --- END ---- 🛑
 
 ![screenshot](documentation/mockup.png)
 
@@ -40,17 +20,18 @@ source: [friend-finder amiresponsive](https://ui.dev/amiresponsive?url=https://f
 
 #### 1. Strategy Plane
 ##### Purpose
-- Provide users with a simple and effective way to track daily sandwich sales and analyze trends over time.
-- Help users optimize sandwich production to reduce waste and meet demand efficiently.
+- Provide users with a simple and effective way to manage and store personal or professional contact information.
+- Make it easy to access, update, and maintain contact records via a user-friendly CLI.
 
 ##### Primary User Needs
-- Track daily sales by sandwich type with minimal effort.
-- Analyze sales data for trends and insights.
-- Receive suggestions for future sandwich production.
+- Add, view, search, update, and delete contacts quickly and efficiently.
+- Ensure that contacts are saved across sessions and accessible anytime.
+- Use a clear and intuitive interface that doesn't require technical expertise.
 
 ##### Business Goals
-- Offer a reliable tool for tracking sales and optimizing inventory.
-- Help businesses reduce waste and improve customer satisfaction through better forecasting.
+- Offer a lightweight yet powerful contact management tool using Python and Google Sheets.
+- Demonstrate practical Python skills with external APIs for real-world data handling.
+- Help users stay organized and connected by simplifying contact management.
 
 #### 2. Scope Plane
 ##### Features
