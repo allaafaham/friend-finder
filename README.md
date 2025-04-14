@@ -38,27 +38,31 @@ source: [friend-finder amiresponsive](https://ui.dev/amiresponsive?url=https://f
 - A full list of [Features](#features) can be viewed in detail below.
 
 ##### Content Requirements
-- Input form for daily sandwich sales.
-- Display of total daily sales and breakdown by sandwich type.
-- Trend analysis over specified time periods (e.g., week, month).
-- Category filters for sandwich types (e.g., vegetarian, meat, cheese).
-- Suggested production numbers for the next day based on sales data.
+- Input prompts for adding new contact details (e.g., name, phone, email).
+- Display of all saved contacts in a readable format.
+- Search functionality to find contacts by name.
+- Update and delete options for modifying existing contact records.
+- Persistent data storage using Google Sheets to retain contact information between sessions.
+
 
 #### 3. Structure Plane
 ##### Information Architecture
+
 - **Hierarchy**:
-  - Daily sales input form as the primary focus for ease of use.
+  - Main menu with clear options to add, view, search, update, or delete contacts as the primary focus.
 
 ##### User Flow
-1. User opens the app → inputs daily sandwich sales data.
-2. User views a summary of the day’s sales → checks breakdown by type.
-3. User views Trends → analyzes sales trends over time.
-4. User receives suggested production numbers for the next day.
-5. User logs data quickly and returns to shop activities.
+1. User opens the app → sees main menu with contact management options.
+2. User selects "Add Contact" → enters name, phone number, and email.
+3. User selects "View Contacts" → sees a list of all saved contacts.
+4. User selects "Search Contact" → finds contact by name.
+5. User selects "Update" or "Delete" to modify existing contact information.
+6. Data is saved to Google Sheets → user exits or continues managing contacts.
+
 
 #### 4. Skeleton Plane
-##### Flowchart Logic
-- A flowchart under [Wireframes](#wireframes) can be viewed in detail below.
+##### Wireframes
+- No wireframes were used for this project.
 
 #### 5. Surface Plane
 ##### Visual Design Elements
@@ -67,75 +71,40 @@ source: [friend-finder amiresponsive](https://ui.dev/amiresponsive?url=https://f
 
 ## User Stories
 
-⚠️ INSTRUCTIONS ⚠️
-
-In this section, list all of your possible user stories for the project. Samples have been provided below using the example walkthrough project for your inspiration. Make sure to adjust to match your own project features!
-
-⚠️ --- END --- ⚠️
-
 | Target | Expectation | Outcome |
 | --- | --- | --- |
-| As a user | I would like to input the number of each sandwich type sold during the day | so that I can track daily sales accurately. |
-| As a user | I would like to view a breakdown of total sandwich sales by type | so that I can easily see which sandwiches are the most and least popular. |
-| As a user | I would like the application to calculate the total sandwiches sold for the day | so that I don’t have to do manual sums. |
-| As a user | I would like to see a trend of sandwich sales over time (e.g., week, month) | so that I can identify which sandwiches are consistently popular. |
-| As a user | I would like the application to suggest an estimated number of each sandwich type to make for the next day, based on past sales data | so that I can minimize waste and shortages. |
-| As a user | I would like the app to categorize sandwiches by type (e.g., vegetarian, meat, cheese) | so that I can track popularity within different dietary categories. |
-| As a user | I would like to input sales quickly with minimal typing | so that I can focus on running the shop instead of logging data. |
-| As a user | I would like the app to be intuitive and easy to use | so that I can start tracking sales without needing extensive training. |
+| As a user | I want to add a new contact | so that I don’t lose their information. |
+| As a user | I want to view all my saved contacts | so that I can quickly find someone. |
+| As a user | I want to search for a contact by name | so that I can find a specific person easily. |
+| As a user | I want to update a contact’s details | so that I can keep information up to date. |
+| As a user | I want to delete a contact | so that I can remove people I no longer need in my list. |
+| As a user | I want my contacts to be saved even after I close the program | so that I don’t lose them. |
+| As a user | I want to sort my contacts alphabetically | so that I can find them faster. |
+| As a user | I want to categorize contacts with tags like "Work" or "Family" | so that I can organize them better. |
+| As a user | I want to protect my contact list with a password | so that nobody else can access it. |
 
-## Wireframes
-
-To follow best practice, a flowchart was created to showcase the progression of the Python app.
-I've used [Lucidchart](https://www.lucidchart.com/pages/examples/flowchart-maker) to design my app flowchart.
-
-![screenshot](documentation/flowchart.png)
 
 ## Features
-
-⚠️ INSTRUCTIONS ⚠️
-
-In this section, you should go over the different parts of your project, and describe each feature. You should explain what value each of the features provides for the user, focusing on your target audience, what they want to achieve, and how your project can help them achieve these things.
-
-**IMPORTANT**: Remember to always include a screenshot of each individual feature!
-
-⚠️ --- END --- ⚠️
 
 ### Existing Features
 
 | Feature | Notes | Screenshot |
 | --- | --- | --- |
-| Data Input Validation | The program validates user input by ensuring the data is exactly six comma-separated numbers before continuing. | ![screenshot](documentation/features/data-validation.png) |
-| API Update | Sales, surplus, and stock data are updated in the relevant Google Sheets worksheet using gspread functionality. | ![screenshot](documentation/features/api-update.png) |
-| Surplus Calculation | Calculates surplus by comparing the latest stock and sales data to identify potential waste or shortages. | ![screenshot](documentation/features/surplus-calculation.png) |
-| Last 5 Sales Entries | Retrieves the last five sales entries from the "sales" worksheet for calculating stock averages. | ![screenshot](documentation/features/latest-entries.png) |
-| Stock Calculation | Computes stock based on the last 5 sales entries, adding 10% to the average to ensure adequate future stock. | ![screenshot](documentation/features/stock-calculation.png) |
-| Sales Data Automation | Automates the entire process of retrieving, validating, and updating sales, surplus, and stock data in Google Sheets. | ![screenshot](documentation/features/sales-data.png) |
+| Add New Contact | Users can input a new contact's name, phone number, and email, which is then saved to the Google Sheet. | ![screenshot](documentation/features/add-contact.png) |
+| View All Contacts | Displays a list of all saved contacts in a clean, readable format. | ![screenshot](documentation/features/view-contacts.png) |
+| Search Contact | Users can search for a contact by name and view their details. | ![screenshot](documentation/features/search-contact.png) |
+| Update Contact | Allows users to update the details of an existing contact. | ![screenshot](documentation/features/update-contact.png) |
+| Delete Contact | Enables users to remove a contact from the contact list. | ![screenshot](documentation/features/delete-contact.png) |
+| Persistent Storage | All contact data is stored in a Google Sheet via the `gspread` API, ensuring it remains after the program exits. | ![screenshot](documentation/features/persistent-storage.png) |
+
 
 ### Future Features
 
-⚠️ INSTRUCTIONS ⚠️
-
-Do you have additional ideas that you'd like to include on your project in the future? Fantastic, list them here! It's always great to have plans for future improvements. Consider adding any helpful links or notes to help remind you in the future, if you revisit the project in a couple years.
-
-A few examples are listed below to align with possible ways to improve on the sample walkthrough project, to give you some inspiration.
-
-⚠️ --- END ---⚠️
-
-- **User Authentication and Role Management**: Implement a login system with roles (e.g., admin, employee) to restrict data access based on user roles.
-- **Data Visualization**: Add charts and graphs to visually represent sales trends, stock levels, and surplus/waste over time.
-- **Real-time Data Sync**: Integrate real-time syncing of sales and stock data across multiple devices to support live updates.
-- **Automated Restocking Alerts**: Notify users when stock levels fall below a certain threshold, prompting restock orders.
-- **Predictive Analytics**: Use historical sales data to predict future demand, helping to optimize stock levels and minimize waste.
-- **Multilingual Support**: Add support for multiple languages to make the app more accessible to a global audience.
-- **Mobile App Integration**: Develop a mobile version of the app for easier data input and stock management on the go.
-- **Reporting and Exporting**: Generate and export detailed reports in PDF or CSV format for deeper analysis of sales, surplus, and stock data.
-- **Inventory Management**: Include functionality to track supplier information, order inventory, and manage costs directly within the app.
-- **Customer Feedback Integration**: Allow customers to leave feedback on sold items, giving insight into sales performance and customer satisfaction.
-- **Customizable Dashboards**: Provide users with the ability to customize their dashboard, selecting which data points and metrics they want to monitor.
-- **Historical Data Comparison**: Implement functionality to compare current sales and stock data with data from the same period in previous years.
-- **Seasonal Adjustment Recommendations**: Analyze sales patterns and suggest stock adjustments for holidays or other seasonal trends.
-- **API Integration**: Provide an API for integrating with other third-party services, such as point-of-sale systems or accounting software.
+- **User Authentication and Access Control**: Implement password protection and user roles to ensure only authorized users can access or modify contact data.
+- **Tag Filtering and Group Views**: Allow users to filter contacts by custom tags like "Family", "Work", or "Emergency", and view them in organized groups.
+- **Contact Import and Export**: Enable users to import contacts from CSV or export their entire contact list for backups or sharing.
+- **Birthday and Anniversary Reminders**: Include a date field with reminders for important events like birthdays or anniversaries.
+- **Search by Tag or Category**: Improve search functionality to allow filtering by name, tag, or other criteria.
 
 ## Tools & Technologies
 
@@ -151,120 +120,52 @@ A few examples are listed below to align with possible ways to improve on the sa
 | [![badge](https://img.shields.io/badge/ChatGPT-grey?logo=openai&logoColor=75A99C)](https://chat.openai.com) | Help debug, troubleshoot, and explain things. |
 | [![badge](https://img.shields.io/badge/Lucidchart-grey?logo=lucid&logoColor=F97B2C)](https://www.lucidchart.com) | Flow diagrams for mapping the app's logic. |
 
-⚠️ NOTE ⚠️
-
-Want to add more?
-
-- Tutorial: https://shields.io/badges/static-badge
-- Icons/Logos: https://simpleicons.org
-  - FYI: not all logos are available to use
-
-🛑 --- END --- 🛑
-
 ## Database Design
 
 ### Data Model
 
-#### Flowchart
+The data for the FriendFinder application is stored in a Google Sheet using the gspread library. The sheet is structured with the following column headings: "Name", "Phone", "Email", and "Notes". Each contact is stored in a single row, with one row representing one contact.
 
-To follow best practice, a flowchart was created for the app's logic, and mapped out using a free version of [Lucidchart](https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning) and/or [Draw.io](https://www.draw.io). The flowchart below represents the main process of this Python program. It shows the entire cycle of the application.
+When the application runs, it interacts directly with the Google Sheet to read and write contact data. The rows are typically retrieved as lists, and each contact is represented as a list of values corresponding to the sheet’s columns. For example:
 
-![screenshot](documentation/flowchart.png)
+["John Doe", "1234567890", "john@example.com", "Work colleague"]
 
-⚠️ RECOMMENDED ⚠️
+All operations—such as adding, viewing, searching, updating, and deleting contacts—are performed using functions that manipulate these lists and synchronize changes back to the Google Sheet.
+There is no dedicated Contact class; instead, the logic is function-based. Each function handles a specific task like inserting a new row, finding a row by name, or modifying existing contact data.
+This data model ensures simplicity and flexibility while allowing the application to persist data between sessions through the cloud-based Google Sheet.
 
-Looking for an interactive version of your flowchart? Consider using a [`Mermaid flowchart`](https://mermaid.live). To simplify the process, you can ask ChatGPT (or similar) the following prompt:
-
-> ChatGPT Prompt:
-> "Generate a Markdown syntax Mermaid flowchart using a screenshot of my existing flowchart"
-> [paste-your-flowchart-screenshot-into-ChatGPT]
-
-The "Love Sandwiches" sample flowchart in Markdown syntax using Mermaid can be seen below as an example.
-
-**NOTE**: A Markdown Preview tool doesn't show the interactive flowchart, you must first commit/push the code to your GitHub repository in order to see it live in action.
-
-```mermaid
-flowchart TD
-    A[Start] --> B[Get Sales Data]
-    B --> C{Is Data Valid?}
-    C -->|Yes| D[Convert Data to Integers]
-    C -->|No| B
-    D --> E[Update Sales Worksheet]
-    E --> F[Calculate Surplus Data]
-    F --> G[Update Surplus Worksheet]
-    G --> H[Get Last 5 Sales Entries]
-    H --> I[Calculate Stock Data]
-    I --> J[Update Stock Worksheet]
-    J --> K[End]
-```
-
-Source: [Mermaid Flowchart for Love Sandwiches](https://mermaid.live/edit#pako:eNpdkctugzAQRX_F8jpZdsOiVXkkIa26SR9qgcUIJoAwNjLjVlXIv5cMJErjlWfu8b0z8kHmpkDpyb0yP3kFlsRrmGoxnsdkR2OdieXyXvjJGknsQGEvQiDIJsZnMTjEU1e8g6qLh-MkBidx-MR-EGESGP2NoztjZESsCUu0fXbNvphB-FMjZOcoeesKIJyTP4xt-gqR5lcRQ6skAJU7xZyznXL_ZlwxtL44zcSt15qxDe_5DD2Juzk00mRrPA-6YSy-jiSTN9eBMSPbSyDrt3Fbhp6SSBeZXMgWbQt1MX7E4aSnkipsMZXeeC3ANqlM9XHkwJHZ_epcemQdLqTjjLCG0kJ7bnagv4y5lNa4spLeHlSPxz-Rd5za)
-
-⚠️ --- END --- ⚠️
 
 #### Classes & Functions
 
-⚠️ INSTRUCTIONS ⚠️
+The primary functions used in this application are:
 
-Use this space to explain your Python classes (if applicable) and functions. Examples below for inspiration, although Love Sandwiches doesn't use this example `Person` class/object.
-
-⚠️ --- END --- ⚠️
-
-The program uses classes as a blueprint for the project's object-oriented programming (OOP). This allows for the object to be reusable and callable where necessary.
-
-```python
-class Person:
-    """ Insert docstring comments here """
-    def __init__(self, name, age, health, inventory):
-        self.name = name
-        self.age = age
-        self.health = health
-        self.inventory = inventory
-```
-
-The primary functions used on this application are:
-
-- `get_sales_data()`
-    - Get sales figures input from the user.
-- `validate_data()`
-    - Converts all string values into integers.
-- `update_worksheet()`
-    - Update the relevant worksheet with the data provided.
-- `calculate_surplus_data()`
-    - Compare sales with stock and calculate the surplus for each item type.
-- `get_last_5_entries_sales()`
-    - Collects columns of data from sales worksheet.
-- `calculate_stock_data()`
-    -  Calculate the average stock for each item type, adding 10%.
+- `add_contact()`
+    - Prompts the user for contact details and saves them to the Google Sheet.
+- `view_contacts()`
+    - Retrieves and displays all saved contacts, sorted alphabetically by name.
+- `search_contact()`
+    - Searches for a contact by name and displays the result.
+- `edit_contact()`
+    - Finds a contact by name and allows the user to update the contact's details.
+- `delete_contact()`
+    - Finds a contact by name and removes it from the Google Sheet.
+- `print_menu()`
+    - Displays the main menu options.
 - `main()`
-    - Run all program functions.
+    - Runs the program loop and handles user menu input.
 
 #### Imports
 
-⚠️ INSTRUCTIONS ⚠️
+I've used the following Python packages and external imports:
 
-Use this space to explain your Python imports and packages, with some common examples found below.
+- `gspread`: used to connect and interact with Google Sheets
+- `google.oauth2.service_account`: used for authenticating Google Sheets API credentials
+- `colorama`: used for adding color to terminal outputs for better readability
 
-⚠️ --- END --- ⚠️
-
-I've used the following Python packages and external imports.
-
-- `gspread`: used with the Google Sheets API
-- `google.oauth2.service_account`: used for the Google Sheets API credentials
-- `time`: used for adding time delays
-- `os`: used for adding a `clear()` function
-- `colorama`: used for including color in the terminal
-- `random`: used to get a random choice from a list
 
 ## Agile Development Process
 
 ### GitHub Projects
-
-⚠️ TIP ⚠️
-
-Consider adding screenshots of your Projects Board(s), Issues (open and closed), and Milestone tasks.
-
-⚠️ --- END ---⚠️
 
 [GitHub Projects](https://www.github.com/allaafaham/friend-finder/projects) served as an Agile tool for this project. Through it, EPICs, User Stories, issues/bugs, and Milestone tasks were planned, then subsequently tracked on a regular basis using the Kanban project board.
 
@@ -348,19 +249,14 @@ The Python terminal window should now be connected and deployed to Heroku!
 
 This application uses [Google Sheets](https://docs.google.com/spreadsheets) to handle a "makeshift" database on the live site.
 
-⚠️ INSTRUCTIONS ⚠️
+To run your own version of this application, you will need to create your own Google Sheet with one sheet named `Sheet1` (or leave the default name) in the following format:
 
-The sample Sheet below follows along with the CI Love Sandwiches lessons, so make sure to refactor to your own project requirements.
+| Name         | Phone       | Email               | Notes         |
+| ------------ | ----------- | ------------------- | ------------- |
+| John Doe     | 1234567890  | john@example.com    | Work contact  |
+| Jane Smith   | 0987654321  | jane@example.com    | Family        |
+| Sample Name  | 5551234567  | sample@email.com    | Gym buddy     |
 
-⚠️ --- END ---⚠️
-
-To run your own version of this application, you will need to create your own Google Sheet with three sheets named `sales`, `surplus`, and `stock` in the following format:
-
-| cheese ham | tom moz | chicken salad | egg salad | hummus veg | ham egg |
-| --- | --- | --- | --- | --- | --- |
-| sample data | sample data | sample data | sample data | sample data | sample data |
-| sample data | sample data | sample data | sample data | sample data | sample data |
-| sample data | sample data | sample data | sample data | sample data | sample data |
 
 A credentials file in `.JSON` format from the Google Cloud Platform is also mandatory:
 
@@ -428,86 +324,21 @@ By forking the GitHub Repository, you make a copy of the original repository on 
 
 ### Local VS Deployment
 
-⚠️ INSTRUCTIONS ⚠️
-
-Use this space to discuss any differences between the local version you've developed, and the live deployment site. Generally, there shouldn't be [m]any major differences, so if you honestly cannot find any differences, feel free to use the following example:
-
-⚠️ --- END --- ⚠️
-
 There are no remaining major differences between the local version when compared to the deployed version online.
 
 ## Credits
 
-⚠️ INSTRUCTIONS ⚠️
-
-In the following sections, you need to reference where you got your content, media, and any extra help. It is common practice to use code from other repositories and tutorials (which is totally acceptable), however, it is important to be very specific about these sources to avoid potential plagiarism.
-
-⚠️ --- END ---⚠️
-
 ### Content
-
-⚠️ INSTRUCTIONS ⚠️
-
-Use this space to provide attribution links for any borrowed code snippets, elements, and resources. Ideally, you should provide an actual link to every resource used, not just a generic link to the main site. If you've used multiple components from the same source (such as Bootstrap), then you only need to list it once, but if it's multiple Codepen samples, then you should list each example individually. If you've used AI for some assistance (such as ChatGPT or Perplexity), be sure to mention that as well. A few examples have been provided below to give you some ideas.
-
-⚠️ --- END ---⚠️
 
 | Source | Notes |
 | --- | --- |
 | [Markdown Builder](https://markdown.2bn.dev) | Help generating Markdown files |
-| [Chris Beams](https://chris.beams.io/posts/git-commit) | "How to Write a Git Commit Message" |
 | [Love Sandwiches](https://codeinstitute.net) | Code Institute walkthrough project inspiration |
-| [Real Python](https://realpython.com/python-quiz-application) | Inspiration for a quiz app |
-| [BroCode](https://www.youtube.com/watch?v=ag8NtD1e0Kc) | Inspiration for hangman game |
-| [Python Tutor](https://pythontutor.com) | Additional Python help |
 | [Colorama](https://www.youtube.com/watch?v=u51Zjlnui4Y) | Adding color in Python |
-| [StackOverflow](https://stackoverflow.com/a/50921841) | Clear screen in Python |
 | [ChatGPT](https://chatgpt.com) | Help with code logic and explanations |
 
-### Media
-
-⚠️ INSTRUCTIONS ⚠️
-
-Use this space to provide attribution links to any media files borrowed from elsewhere (images, videos, audio, etc.). If you're the owner (or a close acquaintance) of some/all media files, then make sure to specify this information. Let the assessors know that you have explicit rights to use the media files within your project. Ideally, you should provide an actual link to every media file used, not just a generic link to the main site, unless it's AI-generated artwork.
-
-Looking for some media files? Here are some popular sites to use. The list of examples below is by no means exhaustive. Within the Code Institute Slack community, you can find more "free media" links by sending yourself (or Slackbot) the following command: `!freemedia`.
-
-- Images
-    - [Pexels](https://www.pexels.com)
-    - [Unsplash](https://unsplash.com)
-    - [Pixabay](https://pixabay.com)
-    - [Lorem Picsum](https://picsum.photos) (placeholder images)
-    - [Wallhere](https://wallhere.com) (wallpaper / backgrounds)
-    - [This Person Does Not Exist](https://thispersondoesnotexist.com) (reload to get a new person)
-- Audio
-    - [Audio Micro](https://www.audiomicro.com/free-sound-effects)
-- Video
-    - [Videvo](https://www.videvo.net)
-- Image Compression
-    - [TinyPNG](https://tinypng.com) (for images <5MB)
-    - [CompressPNG](https://compresspng.com) (for images >5MB)
-
-A few examples have been provided below to give you some ideas on how to do your own Media credits.
-
-⚠️ --- END ---⚠️
-
-| Source | Notes |
-| --- | --- |
-| [ASCII Art Archive](https://www.asciiart.eu) | Pre-defined ASCII art |
-| [TEXT-IMAGE](https://www.text-image.com) | Converting an image to ASCII art |
-| [Patorjk](https://patorjk.com/software/taag) | Converting text to ASCII art |
 
 ### Acknowledgements
 
-⚠️ INSTRUCTIONS ⚠️
-
-Use this space to provide attribution and acknowledgement to any supports that helped, encouraged, or supported you throughout the development stages of this project. It's always lovely to appreciate those that help us grow and improve our developer skills. A few examples have been provided below to give you some ideas.
-
-⚠️ --- END ---⚠️
-
 - I would like to thank my Code Institute mentor, [Tim Nelson](https://www.github.com/TravelTimN) for the support throughout the development of this project.
 - I would like to thank the [Code Institute](https://codeinstitute.net) Tutor Team for their assistance with troubleshooting and debugging some project issues.
-- I would like to thank the [Code Institute Slack community](https://code-institute-room.slack.com) for the moral support; it kept me going during periods of self doubt and impostor syndrome.
-- I would like to thank my partner, for believing in me, and allowing me to make this transition into software development.
-- I would like to thank my employer, for supporting me in my career development change towards becoming a software developer.
-
