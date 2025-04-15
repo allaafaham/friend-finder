@@ -7,6 +7,8 @@
 FriendFinder is a simple command-line contact book built with Python. It allows users to add, view, search, update, and delete contacts through an intuitive text-based interface. All data is stored in a connected Google Sheet using the gspread library, ensuring that contacts are saved and accessible across sessions. FriendFinder is designed to be lightweight, functional, and a great introduction to using Python with external APIs for real-world applications.
 
 
+[Visit the site here](https://friend-finder-py-77390a27fd18.herokuapp.com/) 
+
 ![screenshot](documentation/mockup.png)
 
 source: [friend-finder amiresponsive](https://ui.dev/amiresponsive?url=https://friend-finder-py-77390a27fd18.herokuapp.com)
