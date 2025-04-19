@@ -57,13 +57,13 @@ def view_contacts():
         sorted_data = sorted(data, key=lambda x: x[0].lower())
 
         print(f"{'No.':<4} {'Name':<20}  | {'Phone':<15} | {'Email':<25} |"
-              "Notes"
+              f"Notes"
               )
         print("-" * 80)
 
         for i, contact in enumerate(sorted_data, start=1):
             print(f"{i:<4} {contact[0]:<20} | {contact[1]:<15} |"
-                  " {contact[2]:<25} | {contact[3]}")
+                  f" {contact[2]:<25} | {contact[3]}")
 
     except Exception as e:
         print(Fore.RED + "❌ Failed to retrieve contacts.")
@@ -91,7 +91,7 @@ def search_contact():
             name = contact[0].strip().lower()
             if name == name_to_search:
                 print(f"🔎 Found: {contact[0]} | {contact[1]} |"
-                      " {contact[2]} | {contact[3]}")
+                      f" {contact[2]} | {contact[3]}")
                 found = True
                 break
 
@@ -131,7 +131,7 @@ def edit_contact():
         print(f"\nFound {len(matches)} matching contact(s):")
         for i, (row, contact) in enumerate(matches, start=1):
             print(f"{i}. {contact[0]} | {contact[1]} |"
-                  " {contact[2]} | {contact[3]}")
+                  f" {contact[2]} | {contact[3]}")
 
         while True:
             try:
@@ -141,7 +141,7 @@ def edit_contact():
                     break
                 else:
                     print(f"Please enter a number between"
-                          " 1 and {len(matches)}.")
+                          f" 1 and {len(matches)}.")
             except ValueError:
                 print("Please enter a valid number.")
 
@@ -190,7 +190,7 @@ def delete_contact():
         print(f"\nFound {len(matches)} matching contact(s):")
         for i, (row, contact) in enumerate(matches, start=1):
             print(f"{i}. {contact[0]} | {contact[1]} |"
-                  " {contact[2]} | {contact[3]}")
+                  f" {contact[2]} | {contact[3]}")
 
         while True:
             try:
