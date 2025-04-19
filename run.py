@@ -14,7 +14,9 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('friend-finder')
 
-#function to add a new contact.
+# function to add a new contact.
+
+
 def add_contact():
     print("\n--- Add New Contact ---")
     try:
@@ -35,7 +37,9 @@ def add_contact():
         print("❌ An error occurred while adding the contact.")
         print(f"Error details: {e}")
 
-#function to view all contacts.
+# function to view all contacts.
+
+
 def view_contacts():
     print(Fore.CYAN + "\n--- All Contacts (Sorted by Name) ---")
     try:
@@ -52,17 +56,22 @@ def view_contacts():
         # Sort by name (first column)
         sorted_data = sorted(data, key=lambda x: x[0].lower())
 
-        print(f"{'No.':<4} {'Name':<20} | {'Phone':<15} | {'Email':<25} | Notes")
+        print(f"{'No.':<4} {'Name':<20}  | {'Phone':<15} | {'Email':<25} |"
+              "Notes"
+              )
         print("-" * 80)
 
         for i, contact in enumerate(sorted_data, start=1):
-            print(f"{i:<4} {contact[0]:<20} | {contact[1]:<15} | {contact[2]:<25} | {contact[3]}")
+            print(f"{i:<4} {contact[0]:<20} | {contact[1]:<15} |"
+                  " {contact[2]:<25} | {contact[3]}")
 
     except Exception as e:
         print(Fore.RED + "❌ Failed to retrieve contacts.")
         print(f"Error: {e}")
 
 # fucntion to search contact by name.
+
+
 def search_contact():
     print("\n--- Search Contact by Name ---")
     try:
@@ -76,12 +85,13 @@ def search_contact():
             return
 
         found = False
-        
+
         # Iterate through the contacts to find the matching name.
         for contact in contacts[1:]:
             name = contact[0].strip().lower()
             if name == name_to_search:
-                print(f"🔎 Found: {contact[0]} | {contact[1]} | {contact[2]} | {contact[3]}")
+                print(f"🔎 Found: {contact[0]} | {contact[1]} |"
+                      " {contact[2]} | {contact[3]}")
                 found = True
                 break
 
@@ -97,7 +107,8 @@ def search_contact():
 def edit_contact():
     print("\n--- Edit Contact ---")
     try:
-        name_to_edit = input("Enter name of the contact to edit: \n").strip().lower()
+        name_to_edit = input("Enter name of"
+                             " the contact to edit: \n").strip().lower()
         worksheet = SHEET.sheet1
         contacts = worksheet.get_all_values()
 
@@ -119,15 +130,18 @@ def edit_contact():
         # If more than one match, ask user to choose
         print(f"\nFound {len(matches)} matching contact(s):")
         for i, (row, contact) in enumerate(matches, start=1):
-            print(f"{i}. {contact[0]} | {contact[1]} | {contact[2]} | {contact[3]}")
+            print(f"{i}. {contact[0]} | {contact[1]} |"
+                  " {contact[2]} | {contact[3]}")
 
         while True:
             try:
-                selection = int(input("\nEnter the number of the contact to edit: \n"))
+                selection = int(input("\nEnter the number"
+                                      " of the contact to edit: \n"))
                 if 1 <= selection <= len(matches):
                     break
                 else:
-                    print(f"Please enter a number between 1 and {len(matches)}.")
+                    print(f"Please enter a number between"
+                          " 1 and {len(matches)}.")
             except ValueError:
                 print("Please enter a valid number.")
 
@@ -140,19 +154,21 @@ def edit_contact():
         new_email = input(f"Email [{contact[2]}]: \n").strip() or contact[2]
         new_notes = input(f"Notes [{contact[3]}]: \n").strip() or contact[3]
 
-        worksheet.update(f"A{row_number}:D{row_number}", [[new_name, new_phone, new_email, new_notes]])
+        worksheet.update(f"A{row_number}:D{row_number}", [[new_name, new_phone, new_email, new_notes]])  # noqa: E501
         print(Style.BRIGHT + Fore.GREEN + "Contact updated successfully.")
-
 
     except Exception as e:
         print("❌ Failed to edit contact.")
         print(f"Error: {e}")
 
-#function to delete a contact.
+# function to delete a contact.
+
+
 def delete_contact():
     print("\n--- Delete Contact ---")
     try:
-        name_to_delete = input("Enter name of the contact to delete: \n").strip().lower()
+        name_to_delete = input("Enter name of the"
+                               " contact to delete: \n").strip().lower()
         worksheet = SHEET.sheet1
         contacts = worksheet.get_all_values()
 
@@ -173,21 +189,25 @@ def delete_contact():
 
         print(f"\nFound {len(matches)} matching contact(s):")
         for i, (row, contact) in enumerate(matches, start=1):
-            print(f"{i}. {contact[0]} | {contact[1]} | {contact[2]} | {contact[3]}")
+            print(f"{i}. {contact[0]} | {contact[1]} |"
+                  " {contact[2]} | {contact[3]}")
 
         while True:
             try:
-                selection = int(input("\nEnter the number of the contact to delete: \n"))
+                selection = int(input("\nEnter the number of the"
+                                      " contact to delete: \n"))
                 if 1 <= selection <= len(matches):
                     break
                 else:
-                    print(f"Please enter a number between 1 and {len(matches)}.")
+                    print(f"Please enter a number"
+                          " between 1 and {len(matches)}.")
             except ValueError:
                 print("Please enter a valid number.")
 
         # Confirm deletion
         row_number, contact = matches[selection - 1]
-        confirm = input(f"\nAre you sure you want to delete {contact[0]}? (y/n): \n").strip().lower()
+        confirm = input(f"\nAre you sure you want to"
+                        " delete {contact[0]}? (y/n): \n").strip().lower()
         if confirm == "y":
             worksheet.delete_rows(row_number)
             print("🗑️ Contact deleted successfully.")
@@ -207,7 +227,7 @@ def print_menu():
     print("4. Edit Contact")
     print("5. Delete Contact")
     print("6. Exit")
-  
+
 
 def main():
     print("welcome to FriendFinder")
@@ -238,4 +258,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
