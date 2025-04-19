@@ -120,7 +120,7 @@ source: [friend-finder amiresponsive](https://ui.dev/amiresponsive?url=https://f
 | [![badge](https://img.shields.io/badge/Heroku-grey?logo=heroku&logoColor=430098)](https://www.heroku.com) | Hosting the deployed back-end site. |
 | [![badge](https://img.shields.io/badge/Google_Sheets-grey?logo=googlesheets&logoColor=34A853)](https://docs.google.com/spreadsheets) | Storing data from my Python app. |
 | [![badge](https://img.shields.io/badge/ChatGPT-grey?logo=openai&logoColor=75A99C)](https://chat.openai.com) | Help debug, troubleshoot, and explain things. |
-| [![badge](https://img.shields.io/badge/Lucidchart-grey?logo=lucid&logoColor=F97B2C)](https://www.lucidchart.com) | Flow diagrams for mapping the app's logic. |
+
 
 ## Database Design
 
@@ -172,15 +172,6 @@ I've used the following Python packages and external imports:
 [GitHub Projects](https://www.github.com/allaafaham/friend-finder/projects) served as an Agile tool for this project. Through it, EPICs, User Stories, issues/bugs, and Milestone tasks were planned, then subsequently tracked on a regular basis using the Kanban project board.
 
 ![screenshot](documentation/gh-projects.png)
-
-### GitHub Issues
-
-[GitHub Issues](https://www.github.com/allaafaham/friend-finder/issues) served as an another Agile tool. There, I managed my User Stories and Milestone tasks, and tracked any issues/bugs.
-
-| Link | Screenshot |
-| --- | --- |
-| [![GitHub issues](https://img.shields.io/github/issues/allaafaham/friend-finder)](https://www.github.com/allaafaham/friend-finder/issues) | ![screenshot](documentation/gh-issues-open.png) |
-| [![GitHub closed issues](https://img.shields.io/github/issues-closed/allaafaham/friend-finder)](https://www.github.com/allaafaham/friend-finder/issues?q=is%3Aissue+is%3Aclosed) | ![screenshot](documentation/gh-issues-closed.png) |
 
 ### MoSCoW Prioritization
 
